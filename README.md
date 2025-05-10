@@ -3,13 +3,7 @@ This repository contains all the materials I used during the GUVI DevOps course.
 
 **Learning Path**
 1. Linux
-    Introduction to Operating Systems
-    Advanced Linux Commands
-    Logging on to the systems
 2. Computer Networking
-    Introduction to Networking & OSI Model
-    Networking Commands
-    Network and Security Protocols
 3. Bash Scripting
 4. AWS
 5. Git & Github
