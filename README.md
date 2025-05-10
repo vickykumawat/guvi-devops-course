@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/002096f5-4c65-4bfa-b104-a603aa5d5d94)# guvi-devops-course
+# guvi-devops-course
 This repository contains all the materials I used during the GUVI DevOps course. I'm sharing these notes with fellow course participants.
 
 
