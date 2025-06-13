@@ -1,0 +1,47 @@
+@Library("Shared")  _
+pipeline{
+    
+    agent { label 'agent1'}
+    
+    stages{
+        stage("Hello"){
+            steps{
+                script{
+                    hello()
+                }
+            }
+        }
+        stage("code"){
+            steps{
+                echo "This is cloning the code"
+                git url: 'https://github.com/vickykumawat/django-notes-app.git', branch: 'main'
+                echo "Code is cloned successfully"
+            }
+            
+        }
+         stage("Build"){
+            steps{
+                echo "This is the building the code"
+                sh 'whoami'
+                sh 'docker build -t notes-app:latest .'
+                echo "Build is Successfully"
+            }
+        }
+        stage("Push to DockerHUb"){
+            steps{
+                echo "This is pushing the image to dockerHubb"
+                withCredentials([usernamePassword(credentialsId:"dockerhub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                sh "docker tag notes-app:latest ${env.dockerHubUser}/notes-app:latest"
+                sh "docker push ${env.dockerHubUser}/notes-app:latest"
+                }
+            }
+        }
+        stage("Deploy"){
+            steps{
+                echo "Thi is deploying the code" 
+                sh 'docker compose up -d'
+            }
+        }
+    }
+}
